@@ -5,13 +5,20 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+
+	"github.com/mattjmcnaughton/tmplinux/pkg/virtualhost"
 )
 
 var rootCmd = &cobra.Command{
 	Use:   "tmplinux",
 	Short: "tmplinux creates temporary virtual linux environments",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("hi")
+		vh := virtualhost.NewContainerVirtualHost()
+
+		vh.Start()
+		vh.Stop()
+		vh.Ssh()
+		vh.UniqueVirtualHostMethod()
 	},
 }
 

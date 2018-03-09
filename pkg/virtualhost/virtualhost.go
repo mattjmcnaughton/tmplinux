@@ -1,8 +1,6 @@
 package virtualhost
 
 import (
-	"fmt"
-
 	"github.com/mattjmcnaughton/tmplinux/pkg/engine"
 )
 
@@ -12,16 +10,12 @@ type VirtualHost struct {
 
 func NewContainerVirtualHost() *VirtualHost {
 	return &VirtualHost{
-		engine.DockerEngine{},
+		engine.NewDockerEngine(),
 	}
 }
 
-// func NewVMVirtualHost() *VirtualHost {
-// 	return &VirtualHost{
-// 		engine.VagrantEngine{},
-// 	}
-// }
-
-func (v *VirtualHost) UniqueVirtualHostMethod() {
-	fmt.Printf("hi")
+func NewVMVirtualHost() *VirtualHost {
+	return &VirtualHost{
+		engine.NewVagrantEngine(),
+	}
 }

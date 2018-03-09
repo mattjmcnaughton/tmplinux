@@ -1,29 +1,62 @@
 package engine
 
 import (
-	"fmt"
+	"github.com/mattjmcnaughton/tmplinux/pkg/executor"
+	"github.com/mattjmcnaughton/tmplinux/pkg/reporter"
 )
 
-// Think about injecting the `os` module to these engines.
+const (
+	ContainerImage = "ubuntu:16.04"
+	CmdName = "docker"
+)
+
 type DockerEngine struct {
+	exec executor.Executor
+	reporter.Reporter
+}
+
+func NewDockerEngine() DockerEngine {
+	return DockerEngine{
+		executor.ShellExecutor{},
+		reporter.FmtReporter{},
+	}
 }
 
 func (d DockerEngine) Start() {
-	fmt.Printf("start")
+	cmdArgs := []string{"run", "--name", d.getContainerName(), "-d", ContainerImage, "tail", "-f", "/dev/null"}
+	err := d.exec.RunWithBoundOutput(CmdName, cmdArgs...)
+
+	d.ReportIfError(err, "Failed to start the docker container")
 }
 
 func (d DockerEngine) Ssh() {
-	fmt.Printf("ssh")
+	cmdArgs := []string{"exec", "-it", d.getContainerName(), "/bin/bash"}
+	err := d.exec.RunWithBoundInputOutput(CmdName, cmdArgs...)
+
+	d.ReportIfError(err, "Failed to ssh into the docker container")
 }
 
 func (d DockerEngine) Stop() {
-	fmt.Printf("stop")
+	cmdArgs := []string{"kill", d.getContainerName()}
+	err := d.exec.RunWithBoundOutput(CmdName, cmdArgs...)
+
+	d.ReportIfError(err, "Failed to stop the docker container")
 }
 
 func (d DockerEngine) Rm() {
-	fmt.Printf("rm")
+	cmdArgs := []string{"rm", d.getContainerName()}
+	err := d.exec.RunWithBoundOutput(CmdName, cmdArgs...)
+
+	d.ReportIfError(err, "Failed to remove the docker container")
 }
 
 func (d DockerEngine) Validate() {
-	fmt.Printf("validate")
+	cmdArgs := []string{"ps"}
+	err := d.exec.Run(CmdName, cmdArgs...)
+
+	d.ReportIfError(err, "You do not have the necessary deps to run docker")
+}
+
+func (d DockerEngine) getContainerName() string {
+	return "tmplinuxcontainer"
 }

@@ -1,17 +1,19 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
+
+	vh "github.com/mattjmcnaughton/tmplinux/pkg/virtualhost"
 )
 
+// @TODO(mattjmcnaughton) Decide if validate show be a private command I call
+// whenever a use attempts a container/vm action.
 var containerValidateCmd = &cobra.Command{
 	Use:   "validate",
 	Short: "Validate have proper deps for using tmplinux with container",
 	Run: func(cmd *cobra.Command, args []string) {
-		// TODO: Work your own magic here
-		fmt.Println("containerized validate called")
+		container := vh.NewContainerVirtualHost()
+		container.Validate()
 	},
 }
 
@@ -19,8 +21,8 @@ var vmValidateCmd = &cobra.Command{
 	Use:   "validate",
 	Short: "Validate have proper deps for using tmp linux with vm",
 	Run: func(cmd *cobra.Command, args []string) {
-		// TODO: Work your own magic here
-		fmt.Println("vm validate called")
+		vm := vh.NewVMVirtualHost()
+		vm.Validate()
 	},
 }
 

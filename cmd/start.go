@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 
 	vh "github.com/mattjmcnaughton/tmplinux/pkg/virtualhost"
@@ -21,8 +19,8 @@ var vmStartCmd = &cobra.Command{
 	Use:   "start",
 	Short: "Start a vm tmplinux environment",
 	Run: func(cmd *cobra.Command, args []string) {
-		// TODO: Work your own magic here
-		fmt.Println("vm start called")
+		vm := vh.NewVMVirtualHost()
+		vm.Start()
 	},
 }
 

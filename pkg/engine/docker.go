@@ -7,7 +7,7 @@ import (
 
 const (
 	ContainerImage = "ubuntu:16.04"
-	CmdName = "docker"
+	CmdName        = "docker"
 )
 
 type DockerEngine struct {

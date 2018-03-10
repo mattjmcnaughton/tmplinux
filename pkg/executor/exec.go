@@ -12,7 +12,7 @@ type Executor interface {
 }
 
 // Will define `MockShellExecutor` for use in my tests.
-type ShellExecutor struct {}
+type ShellExecutor struct{}
 
 func (s ShellExecutor) Run(name string, arg ...string) error {
 	cmd := exec.Command(name, arg...)

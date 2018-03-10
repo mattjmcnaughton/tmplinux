@@ -6,25 +6,25 @@ import (
 	vh "github.com/mattjmcnaughton/tmplinux/pkg/virtualhost"
 )
 
-var containerSshCmd = &cobra.Command{
+var containerSSHCmd = &cobra.Command{
 	Use:   "ssh",
-	Short: "Ssh into container tmp linux environment",
+	Short: "SSH into container tmp linux environment",
 	Run: func(cmd *cobra.Command, args []string) {
 		container := vh.NewContainerVirtualHost()
-		container.Ssh()
+		container.SSH()
 	},
 }
 
-var vmSshCmd = &cobra.Command{
+var vmSSHCmd = &cobra.Command{
 	Use:   "ssh",
-	Short: "Ssh into vm tmp linux environment",
+	Short: "SSH into vm tmp linux environment",
 	Run: func(cmd *cobra.Command, args []string) {
 		vm := vh.NewVMVirtualHost()
-		vm.Ssh()
+		vm.SSH()
 	},
 }
 
 func init() {
-	containerCmd.AddCommand(containerSshCmd)
-	vmCmd.AddCommand(vmSshCmd)
+	containerCmd.AddCommand(containerSSHCmd)
+	vmCmd.AddCommand(vmSSHCmd)
 }

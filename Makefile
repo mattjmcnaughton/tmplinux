@@ -10,7 +10,7 @@ deps:
 	dep ensure
 
 unit_test:
-	go test ./...
+	go test -v ./...
 
 integration_test:
 	bash integration_test.sh

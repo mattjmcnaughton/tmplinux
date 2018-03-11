@@ -19,7 +19,7 @@ type FmtReporter struct {
 }
 
 // ReportIfError outputs the string if the passed error is not nil.
-func (f FmtReporter) ReportIfError(err error, format string, a ...interface{}) {
+func (f *FmtReporter) ReportIfError(err error, format string, a ...interface{}) {
 	if err != nil {
 		fmt.Printf(fmt.Sprintf("%s\n", format), a...)
 		fmt.Printf("Error: %v\n", err)

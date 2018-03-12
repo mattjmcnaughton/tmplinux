@@ -17,7 +17,7 @@ type Executor interface {
 type ShellExecutor struct{}
 
 // Run executes the given command with no input/output binding.
-func (s ShellExecutor) Run(name string, arg ...string) error {
+func (s *ShellExecutor) Run(name string, arg ...string) error {
 	cmd := exec.Command(name, arg...)
 
 	return cmd.Run()
@@ -25,7 +25,7 @@ func (s ShellExecutor) Run(name string, arg ...string) error {
 
 // RunWithBoundOutput executes the given command with just the output bound to
 // the current shell.
-func (s ShellExecutor) RunWithBoundOutput(name string, arg ...string) error {
+func (s *ShellExecutor) RunWithBoundOutput(name string, arg ...string) error {
 	cmd := exec.Command(name, arg...)
 
 	cmd.Stdout = os.Stdout
@@ -36,7 +36,7 @@ func (s ShellExecutor) RunWithBoundOutput(name string, arg ...string) error {
 
 // RunWithBoundInputOutput executes the given command with the input and output
 // bound to the current shell.
-func (s ShellExecutor) RunWithBoundInputOutput(name string, arg ...string) error {
+func (s *ShellExecutor) RunWithBoundInputOutput(name string, arg ...string) error {
 	cmd := exec.Command(name, arg...)
 
 	cmd.Stdin = os.Stdin

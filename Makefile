@@ -1,17 +1,19 @@
 build:
 	go build -o tmplinux main.go
 
-tmpbuild: build
+clean:
 	rm tmplinux
+
+tmpbuild: build clean
 
 deps:
 	dep ensure
 
 unit_test:
-	go test ./...
+	go test -v ./...
 
 integration_test:
-	echo 'Still need to write intergration tests'
+	bash integration_test.sh
 
 test: unit_test integration_test
 

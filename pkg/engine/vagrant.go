@@ -10,16 +10,16 @@ import (
 // VagrantEngine conforms to the `Engine` interface, and provides all the
 // methods for creating a `tmplinux` environment using vagrant.
 type VagrantEngine struct {
-	exec executor.Executor
-	reporter.Reporter
+	exec     executor.Executor
+	reporter reporter.Reporter
 }
 
 // NewVagrantEngine creates a new VagrantEngine, to which we've injected
 // production (i.e. non-testing) executors and reporters.
 func NewVagrantEngine() VagrantEngine {
 	return VagrantEngine{
-		executor.ShellExecutor{},
-		reporter.FmtReporter{},
+		&executor.ShellExecutor{},
+		&reporter.FmtReporter{},
 	}
 }
 

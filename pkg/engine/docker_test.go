@@ -1,7 +1,6 @@
 package engine_test
 
 import (
-	"strings"
 	"testing"
 
 	"github.com/mattjmcnaughton/tmplinux/pkg/engine"
@@ -61,24 +60,4 @@ func TestDockerEngineRmCommandSuccess(t *testing.T) {
 
 	assertKeywordIncludedInCommand(t, mockExecutor, "rm")
 	assertReporterNotCalled(t, mockReporter)
-}
-
-func assertKeywordIncludedInCommand(t *testing.T, mockExecutor executor.MockShellExecutor, keyword string) {
-	execCmd := mockExecutor.GetExecutedCommand()
-
-	if !strings.Contains(execCmd, keyword) {
-		t.Fatalf("%s should include the keyword %s", execCmd, keyword)
-	}
-}
-
-func assertReporterCalled(t *testing.T, mockReporter reporter.MockReporter) {
-	if !mockReporter.Reported() {
-		t.Fatalf("Reporter should have been called")
-	}
-}
-
-func assertReporterNotCalled(t *testing.T, mockReporter reporter.MockReporter) {
-	if mockReporter.Reported() {
-		t.Fatalf("Reporter should not have been called")
-	}
 }

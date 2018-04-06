@@ -5,24 +5,29 @@
 
 set -e
 
+BAZEL_RUN="bazel run //:tmplinux"
+
 integration_test::setup() {
+  make clean
   make build
 }
 
 integration_test::run() {
-  ./tmplinux container validate
-  ./tmplinux container start
+  $BAZEL_RUN container validate
+  $BAZEL_RUN container start
 
-  ./tmplinux container ssh &
+  $BAZEL_RUN container ssh &
   local pid=$!
   kill -9 $pid
 
-  ./tmplinux container stop
-  ./tmplinux container rm
+  $BAZEL_RUN container stop
+  $BAZEL_RUN container rm
 }
 
 integration_test::teardown() {
+  local trap_code="$?"
   make clean
+  exit $trap_code
 }
 
 trap 'integration_test::teardown' EXIT

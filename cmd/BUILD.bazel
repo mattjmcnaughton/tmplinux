@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "container.go",
+        "rm.go",
+        "root.go",
+        "ssh.go",
+        "start.go",
+        "stop.go",
+        "validate.go",
+        "version.go",
+        "vm.go",
+    ],
+    importpath = "github.com/mattjmcnaughton/tmplinux/cmd",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/virtualhost:go_default_library",
+        "//vendor/github.com/spf13/cobra:go_default_library",
+    ],
+)

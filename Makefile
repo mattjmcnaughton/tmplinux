@@ -1,16 +1,14 @@
-build:
-	go build -o tmplinux main.go
+generate_build_files:
+	dep ensure && bazel run //:gazelle
+
+build: generate_build_files
+	bazel build tmplinux
 
 clean:
-	rm tmplinux
-
-tmpbuild: build clean
-
-deps:
-	dep ensure
+	bazel clean
 
 unit_test:
-	go test -v ./...
+	bazel test //pkg/...
 
 integration_test:
 	bash integration_test.sh
@@ -28,7 +26,7 @@ vet:
 
 static: lint fmt vet
 
-check: static test tmpbuild
+check: static test
 
 correct:
 	gofmt -w .

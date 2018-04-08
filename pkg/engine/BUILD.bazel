@@ -1,0 +1,30 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "docker.go",
+        "engine.go",
+        "vagrant.go",
+    ],
+    importpath = "github.com/mattjmcnaughton/tmplinux/pkg/engine",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/executor:go_default_library",
+        "//pkg/reporter:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_xtest",
+    srcs = [
+        "docker_test.go",
+        "engine_test.go",
+        "vagrant_test.go",
+    ],
+    deps = [
+        ":go_default_library",
+        "//pkg/executor:go_default_library",
+        "//pkg/reporter:go_default_library",
+    ],
+)

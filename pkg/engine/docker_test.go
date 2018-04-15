@@ -15,8 +15,8 @@ func TestDockerEngineStartCommandSuccess(t *testing.T) {
 	testDockerEngine := engine.NewCustomDockerEngine(&mockExecutor, &mockReporter)
 	testDockerEngine.Start()
 
-	assertKeywordIncludedInCommand(t, mockExecutor, "run")
-	assertReporterNotCalled(t, mockReporter)
+	mockExecutor.AssertKeywordIncludedInCommand(t, "run")
+	mockReporter.AssertNotCalled(t)
 }
 
 func TestDockerEngineCommandFailed(t *testing.T) {
@@ -26,7 +26,7 @@ func TestDockerEngineCommandFailed(t *testing.T) {
 	testDockerEngine := engine.NewCustomDockerEngine(&mockExecutor, &mockReporter)
 	testDockerEngine.Start()
 
-	assertReporterCalled(t, mockReporter)
+	mockReporter.AssertCalled(t)
 }
 
 func TestDockerEngineSSHCommandSuccess(t *testing.T) {
@@ -36,8 +36,8 @@ func TestDockerEngineSSHCommandSuccess(t *testing.T) {
 	testDockerEngine := engine.NewCustomDockerEngine(&mockExecutor, &mockReporter)
 	testDockerEngine.SSH()
 
-	assertKeywordIncludedInCommand(t, mockExecutor, "exec")
-	assertReporterNotCalled(t, mockReporter)
+	mockExecutor.AssertKeywordIncludedInCommand(t, "exec")
+	mockReporter.AssertNotCalled(t)
 }
 
 func TestDockerEngineStopCommandSuccess(t *testing.T) {
@@ -47,8 +47,8 @@ func TestDockerEngineStopCommandSuccess(t *testing.T) {
 	testDockerEngine := engine.NewCustomDockerEngine(&mockExecutor, &mockReporter)
 	testDockerEngine.Stop()
 
-	assertKeywordIncludedInCommand(t, mockExecutor, "kill")
-	assertReporterNotCalled(t, mockReporter)
+	mockExecutor.AssertKeywordIncludedInCommand(t, "kill")
+	mockReporter.AssertNotCalled(t)
 }
 
 func TestDockerEngineRmCommandSuccess(t *testing.T) {
@@ -58,6 +58,6 @@ func TestDockerEngineRmCommandSuccess(t *testing.T) {
 	testDockerEngine := engine.NewCustomDockerEngine(&mockExecutor, &mockReporter)
 	testDockerEngine.Rm()
 
-	assertKeywordIncludedInCommand(t, mockExecutor, "rm")
-	assertReporterNotCalled(t, mockReporter)
+	mockExecutor.AssertKeywordIncludedInCommand(t, "rm")
+	mockReporter.AssertNotCalled(t)
 }

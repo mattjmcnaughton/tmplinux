@@ -8,6 +8,15 @@
   version = "v1.0"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/mattjmcnaughton/wutils"
+  packages = [
+    "pkg/executor",
+    "pkg/reporter"
+  ]
+  revision = "638af7df9f0daf6c8bc73a91cb0af9a1df152712"
+
+[[projects]]
   name = "github.com/spf13/cobra"
   packages = ["."]
   revision = "7b2c5ac9fc04fc5efafb60700713d4fa609b777b"
@@ -22,6 +31,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "07464de8b16f5ca646bc999fee5c3d7fd39928d9036889da483bc8e490a0b9a9"
+  inputs-digest = "50292ca6d05d859bb7145bccb96451801ead0eaf182236d636ff367e88153bba"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -10,8 +10,8 @@ go_library(
     importpath = "github.com/mattjmcnaughton/tmplinux/pkg/engine",
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/executor:go_default_library",
-        "//pkg/reporter:go_default_library",
+        "//vendor/github.com/mattjmcnaughton/wutils/pkg/executor:go_default_library",
+        "//vendor/github.com/mattjmcnaughton/wutils/pkg/reporter:go_default_library",
     ],
 )
 
@@ -24,7 +24,7 @@ go_test(
     ],
     deps = [
         ":go_default_library",
-        "//pkg/executor:go_default_library",
-        "//pkg/reporter:go_default_library",
+        "//vendor/github.com/mattjmcnaughton/wutils/pkg/executor:go_default_library",
+        "//vendor/github.com/mattjmcnaughton/wutils/pkg/reporter:go_default_library",
     ],
 )

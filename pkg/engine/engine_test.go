@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mattjmcnaughton/tmplinux/pkg/executor"
-	"github.com/mattjmcnaughton/tmplinux/pkg/reporter"
+	"github.com/mattjmcnaughton/wutils/pkg/executor"
+	"github.com/mattjmcnaughton/wutils/pkg/reporter"
 )
 
 func assertKeywordIncludedInCommand(t *testing.T, mockExecutor executor.MockShellExecutor, keyword string) {

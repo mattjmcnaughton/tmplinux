@@ -1,8 +1,8 @@
 package engine
 
 import (
-	"github.com/mattjmcnaughton/tmplinux/pkg/executor"
-	"github.com/mattjmcnaughton/tmplinux/pkg/reporter"
+	"github.com/mattjmcnaughton/wutils/pkg/executor"
+	"github.com/mattjmcnaughton/wutils/pkg/reporter"
 )
 
 const (

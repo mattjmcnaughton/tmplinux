@@ -4,8 +4,8 @@ import (
 	"testing"
 
 	"github.com/mattjmcnaughton/tmplinux/pkg/engine"
-	"github.com/mattjmcnaughton/tmplinux/pkg/executor"
-	"github.com/mattjmcnaughton/tmplinux/pkg/reporter"
+	"github.com/mattjmcnaughton/wutils/pkg/executor"
+	"github.com/mattjmcnaughton/wutils/pkg/reporter"
 )
 
 func TestVagrantEngineStartCommandSuccess(t *testing.T) {

@@ -14,7 +14,7 @@
     "pkg/executor",
     "pkg/reporter"
   ]
-  revision = "638af7df9f0daf6c8bc73a91cb0af9a1df152712"
+  revision = "90e7b2bb0a4b034498cef96caf45ad1b30fb8c59"
 
 [[projects]]
   name = "github.com/spf13/cobra"

@@ -15,12 +15,11 @@ func TestVagrantEngineStartCommandSuccess(t *testing.T) {
 	testVagrantEngine := engine.NewCustomVagrantEngine(&mockExecutor, &mockReporter)
 	testVagrantEngine.Start()
 
-	assertKeywordIncludedInCommand(t, mockExecutor, "init")
-	assertCommandIssuedInSubdirectoryOf(t, mockExecutor, "/tmp")
-	assertKeywordIncludedInCommand(t, mockExecutor, "up")
-	assertCommandIssuedInSubdirectoryOf(t, mockExecutor, "/tmp")
-
-	assertReporterNotCalled(t, mockReporter)
+	mockExecutor.AssertKeywordIncludedInCommand(t, "init")
+	mockExecutor.AssertCommandIssuedInSubdirectoryOf(t, "/tmp")
+	mockExecutor.AssertKeywordIncludedInCommand(t, "up")
+	mockExecutor.AssertCommandIssuedInSubdirectoryOf(t, "/tmp")
+	mockReporter.AssertNotCalled(t)
 }
 
 func TestVagrantEngineCommandFailed(t *testing.T) {
@@ -30,7 +29,7 @@ func TestVagrantEngineCommandFailed(t *testing.T) {
 	testVagrantEngine := engine.NewCustomVagrantEngine(&mockExecutor, &mockReporter)
 	testVagrantEngine.Start()
 
-	assertReporterCalled(t, mockReporter)
+	mockReporter.AssertCalled(t)
 }
 
 func TestVagrantEngineSSHCommandSuccess(t *testing.T) {
@@ -40,9 +39,9 @@ func TestVagrantEngineSSHCommandSuccess(t *testing.T) {
 	testVagrantEngine := engine.NewCustomVagrantEngine(&mockExecutor, &mockReporter)
 	testVagrantEngine.SSH()
 
-	assertKeywordIncludedInCommand(t, mockExecutor, "ssh")
-	assertCommandIssuedInSubdirectoryOf(t, mockExecutor, "/tmp")
-	assertReporterNotCalled(t, mockReporter)
+	mockExecutor.AssertKeywordIncludedInCommand(t, "ssh")
+	mockExecutor.AssertCommandIssuedInSubdirectoryOf(t, "/tmp")
+	mockReporter.AssertNotCalled(t)
 }
 
 func TestVagrantEngineStopCommandSuccess(t *testing.T) {
@@ -52,9 +51,9 @@ func TestVagrantEngineStopCommandSuccess(t *testing.T) {
 	testVagrantEngine := engine.NewCustomVagrantEngine(&mockExecutor, &mockReporter)
 	testVagrantEngine.Stop()
 
-	assertKeywordIncludedInCommand(t, mockExecutor, "suspend")
-	assertCommandIssuedInSubdirectoryOf(t, mockExecutor, "/tmp")
-	assertReporterNotCalled(t, mockReporter)
+	mockExecutor.AssertKeywordIncludedInCommand(t, "suspend")
+	mockExecutor.AssertCommandIssuedInSubdirectoryOf(t, "/tmp")
+	mockReporter.AssertNotCalled(t)
 }
 
 func TestVagrantEngineRmCommandSuccess(t *testing.T) {
@@ -64,13 +63,13 @@ func TestVagrantEngineRmCommandSuccess(t *testing.T) {
 	testVagrantEngine := engine.NewCustomVagrantEngine(&mockExecutor, &mockReporter)
 	testVagrantEngine.Rm()
 
-	assertKeywordIncludedInCommand(t, mockExecutor, "destroy -f")
-	assertCommandIssuedInSubdirectoryOf(t, mockExecutor, "/tmp")
-	assertReporterNotCalled(t, mockReporter)
+	mockExecutor.AssertKeywordIncludedInCommand(t, "destroy -f")
+	mockExecutor.AssertCommandIssuedInSubdirectoryOf(t, "/tmp")
+	mockReporter.AssertNotCalled(t)
 
-	assertKeywordIncludedInCommand(t, mockExecutor, "rm")
-	assertCommandIssuedInSubdirectoryOf(t, mockExecutor, "/tmp")
-	assertReporterNotCalled(t, mockReporter)
+	mockExecutor.AssertKeywordIncludedInCommand(t, "rm")
+	mockExecutor.AssertCommandIssuedInSubdirectoryOf(t, "/tmp")
+	mockReporter.AssertNotCalled(t)
 }
 
 func TestVagrantEngineValidateCommandSuccess(t *testing.T) {
@@ -80,7 +79,7 @@ func TestVagrantEngineValidateCommandSuccess(t *testing.T) {
 	testVagrantEngine := engine.NewCustomVagrantEngine(&mockExecutor, &mockReporter)
 	testVagrantEngine.Validate()
 
-	assertKeywordIncludedInCommand(t, mockExecutor, "global-status")
-	assertCommandIssuedInSubdirectoryOf(t, mockExecutor, "/tmp")
-	assertReporterNotCalled(t, mockReporter)
+	mockExecutor.AssertKeywordIncludedInCommand(t, "global-status")
+	mockExecutor.AssertCommandIssuedInSubdirectoryOf(t, "/tmp")
+	mockReporter.AssertNotCalled(t)
 }

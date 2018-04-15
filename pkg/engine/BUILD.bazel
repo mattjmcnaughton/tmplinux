@@ -19,7 +19,6 @@ go_test(
     name = "go_default_xtest",
     srcs = [
         "docker_test.go",
-        "engine_test.go",
         "vagrant_test.go",
     ],
     deps = [

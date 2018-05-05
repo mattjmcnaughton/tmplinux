@@ -7,7 +7,7 @@ build: generate_build_files
 clean:
 	bazel clean
 
-unit_test:
+unit_test: generate_build_files
 	bazel test //pkg/...
 
 integration_test:

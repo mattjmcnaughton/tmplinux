@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	containerImage = "ubuntu:16.04"
+	containerImage = "ubuntu:18.04"
 	dockerCmdName  = "docker"
 )
 

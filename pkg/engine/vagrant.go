@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	vagrantBox     = "ubuntu/xenial64"
+	vagrantBox     = "ubuntu/bionic64"
 	vagrantCmdName = "vagrant"
 )
 
